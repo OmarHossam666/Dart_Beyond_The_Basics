@@ -58,6 +58,36 @@ Mongolia''';
 
     const anotherText = "How's the Dart book going? :]";
     const emoji = '😊';
-    final emojiText = anotherText.replaceAll(':]', emoji);
+    final emojiText = anotherText.replaceAll(':]' , emoji);
     print(emojiText);
+
+    final message = StringBuffer();
+    message.write('Hello,');
+    message.write(' My Name Is ');
+    message.write('Omar.');
+    message.writeAll(["Hello", "World"] , " Beautiful ");
+    message.clear();
+    print(message);
+
+    final powersOfTwo = StringBuffer();
+    for (int i = 2 ; i <= 1024 ; i *= 2)
+    {
+        powersOfTwo.write('$i ');
+    }
+    print(powersOfTwo);
+
+    // Exercise
+    final buffer = StringBuffer();
+    for (int i = 1 ; i <= 10 ; i++)
+    {
+        for (int j = 1 ; j <= 10 ; j++)
+        {
+            if (j == i) buffer.write(' ');
+            else buffer.write('*');
+            if (j == 10) buffer.write('\n');
+        }
+    }
+    print(buffer);
+
+    
 }
