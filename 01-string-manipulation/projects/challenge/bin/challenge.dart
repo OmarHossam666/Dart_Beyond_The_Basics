@@ -69,13 +69,19 @@ void basicStringManipulationExercise2() {
 /// ```
 ///
 /// Hint: Use a loop inside of a loop.
-void buildingStringsExercise() {
+void buildingStringsExercise()
+{
   final buffer = StringBuffer();
-  for (int i = 0; i < 10; i++) {
-    for (int j = 0; j < 10; j++) {
-      if (j == i) {
+  for (int i = 0; i < 10; i++)
+  {
+    for (int j = 0; j < 10; j++)
+    {
+      if (j == i)
+      {
         buffer.write(' ');
-      } else {
+      } 
+      else
+      {
         buffer.write('*');
       }
     }
@@ -88,7 +94,8 @@ void buildingStringsExercise() {
 ///
 /// Validate that a credit card number contains only numbers and is
 /// exactly 16 digits long.
-void stringValidationExercise() {
+void stringValidationExercise()
+{
   final regex = RegExp(r'^[0-9]{16}$');
   print(regex.hasMatch('1111222233334444')); // true
   print(regex.hasMatch('123')); // false
