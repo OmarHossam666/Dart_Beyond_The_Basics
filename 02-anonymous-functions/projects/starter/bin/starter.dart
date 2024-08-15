@@ -1,3 +1,6 @@
+typedef MapBuilder = Map <String , int> Function(List <int>);
+typedef ZipCode = int;
+typedef TouchHandler = void Function(double x , double y);
 void main()
 {
     Function multiply = (int firstNumber , int secondNumber)
@@ -106,9 +109,105 @@ void main()
 
     final BGrades = scores.where((score) => score > 80 && score < 90);
     print(BGrades);
+
+    // final myButton = Button(title: "Click Me!" , onPressed: () => print("Clicked!"));
+    // print(myButton.onPressed); // The function itself
+    // myButton.onPressed(); // The call of the function
+    // myButton.onPressed.call(); // The call of the function
+
+    final anotherButton = Button(title: "Click Me Too!" , onPressed: () => print("I am the another button!"));
+    print(anotherButton.onPressed);
+    anotherButton.onPressed();
+    anotherButton.onPressed.call();
+
+    final myWidget = Widget(onTouch: (xPosition) => print(xPosition));
+    myWidget.onTouch(3.14);
+
+    final anotherWidget = AnotherWidget(timeStamp: () => DateTime.now().toIso8601String());
+    print(anotherWidget.timeStamp);
+    print(anotherWidget.timeStamp!());
+    print(anotherWidget.timeStamp?.call());
+
+    final myStateManager = StateManager();
+
+    final myButton = Button(title: "Click Me!" , onPressed: myStateManager.handleButtonClick);
+
+    print(myStateManager._counter); // 0
+
+    myButton.onPressed();
+    print(myStateManager._counter); // 1
+
+    myButton.onPressed();
+    print(myStateManager._counter); // 2
+
+    const cities = ['Istanbul' , 'Ankara' , 'Izmir' , 'Bursa' , 'Antalya'];
+    // cities.forEach((city) => print(city)); // Because the anonymous function has the same property like the print method you can use the tear-off instead.
+    cities.forEach(print); // This the Tear-Off.
+
+    // ZipCode number = 66;
+    // int anotherNumber = 42;
+
+    // print(number is int); // true
+    // print(anotherNumber is ZipCode); // true
+
+    final mySurface = Surface(onTouch: (x , y) => print("X-axis: $x | Y-axis: $y"));
+    mySurface.touch(202.3 , 134.0);
+    mySurface.onTouch;
 }
 
 Function namedFunction()
 {
     return () => print("I am anonymous function!");
+}
+
+class Button
+{
+    Button({required this.title , required this.onPressed});
+
+    final String title;
+    final void Function() onPressed;
+}
+
+class Widget
+{
+    Widget({required this.onTouch});
+
+    final void Function(double xPosition) onTouch;
+}
+
+class AnotherWidget
+{
+    AnotherWidget({this.timeStamp});
+
+    final String Function() ? timeStamp; // The null for making it optional.
+}
+
+class StateManager
+{
+    int _counter = 0;
+
+    void handleButtonClick()
+    {
+        _counter++;
+    }
+}
+
+class Gizmo
+{
+    Gizmo({required this.builder});
+
+    final MapBuilder builder;
+}
+
+// Exercise
+class Surface
+{
+    Surface({required this.onTouch});
+
+    final TouchHandler onTouch;
+
+    void touch(double x , double y)
+    {
+        onTouch(x , y);
+    }
 }
