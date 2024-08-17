@@ -1,3 +1,5 @@
+import 'dart:math';
+
 typedef MapBuilder = Map <String , int> Function(List <int>);
 typedef ZipCode = int;
 typedef TouchHandler = void Function(double x , double y);
@@ -153,6 +155,43 @@ void main()
     final mySurface = Surface(onTouch: (x , y) => print("X-axis: $x | Y-axis: $y"));
     mySurface.touch(202.3 , 134.0);
     mySurface.onTouch;
+
+    var counter = 0;
+    final incrementCounter = ()
+    {
+        counter++;
+        print(counter);
+    };
+
+    incrementCounter();
+    incrementCounter();
+    incrementCounter();
+    incrementCounter();
+    incrementCounter();
+
+    final counter1 = countingFunction();
+    final counter2 = countingFunction();
+
+    print(counter1()); // 1
+    print(counter2()); // 1
+    print(counter2()); // 2
+    print(counter1()); // 2
+
+    // Challenge 01
+    final animals = {'sheep': 99 , 'goats': 32 , 'snakes': 7 , 'lions': 80 , 'seals': 18};
+    int totalNumber = 0;
+    animals.forEach((animal , numberOfAnimal)
+    {
+        if (animal[0] == 's' || animal[0] == "S")
+        {
+            totalNumber += numberOfAnimal;
+        }
+    });
+    print(totalNumber); // 124
+
+    // Challenge 02
+    final repeatedTask = repeatTask(4 , 2 , (num input) => pow(input , 2));
+    print(repeatedTask);
 }
 
 Function namedFunction()
@@ -210,4 +249,26 @@ class Surface
     {
         onTouch(x , y);
     }
+}
+
+Function countingFunction()
+{
+    var counter = 0;
+    final incrementCounter = ()
+    {
+        counter++;
+        return counter;
+    };
+    return incrementCounter;
+}
+
+// Challenge 02
+int repeatTask(int times , int input , Function task)
+{
+    int result = task(input); // Called once
+    for (int i = 1 ; i < times ; i++) // Started from 1 because i already called it once before i enter the loop
+    {
+        result = task(result); 
+    }
+    return result;
 }
