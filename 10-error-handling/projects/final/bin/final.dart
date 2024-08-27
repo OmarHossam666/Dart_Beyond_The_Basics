@@ -21,7 +21,7 @@ void dividingByZero() {
 }
 
 void noSuchMethod() {
-  dynamic x = null;
+  dynamic x;
   // int x = null;
   print(x.isEven);
 }

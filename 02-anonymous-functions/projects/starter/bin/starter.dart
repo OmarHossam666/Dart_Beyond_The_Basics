@@ -5,10 +5,10 @@ typedef ZipCode = int;
 typedef TouchHandler = void Function(double x , double y);
 void main()
 {
-    Function multiply = (int firstNumber , int secondNumber)
+    multiply(int firstNumber , int secondNumber)
     {
         return firstNumber * secondNumber;
-    };
+    }
 
     // Function divide = (int firstNumber , int secondNumber)
     // {
@@ -24,21 +24,21 @@ void main()
     List <int> myList = [1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10];
 
     List <int> tripledList = [];
-    final triple = (int number)
+    triple(int number)
     {
         number *= 3;
         tripledList.add(number);
-    };
+    }
     myList.forEach(triple);
 
     print(myList);
     print(tripledList);
 
     final flowerColor = {"Roses": "Red" , "Violets": "Blue"};
-    final printFlowerColors = (String flower , String color)
+    printFlowerColors(String flower , String color)
     {
         print("$flower are $color");
-    };
+    }
     flowerColor.forEach(printFlowerColors);
 
     print('I \u2764 Dart');
@@ -157,11 +157,11 @@ void main()
     mySurface.onTouch;
 
     var counter = 0;
-    final incrementCounter = ()
+    incrementCounter()
     {
         counter++;
         print(counter);
-    };
+    }
 
     incrementCounter();
     incrementCounter();
@@ -254,11 +254,11 @@ class Surface
 Function countingFunction()
 {
     var counter = 0;
-    final incrementCounter = ()
+    incrementCounter()
     {
         counter++;
         return counter;
-    };
+    }
     return incrementCounter;
 }
 

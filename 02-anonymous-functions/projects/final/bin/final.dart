@@ -26,9 +26,9 @@ void assigningFunctionsToVariables() {
   String greeting = 'hello';
   bool isHungry = true;
 
-  Function multiply = (int a, int b) {
+  multiply(int a, int b) {
     return a * b;
-  };
+  }
 }
 
 void passingFunctionsToFunctions() {
@@ -46,21 +46,23 @@ void returningFunctionsFromFunctions() {
 void iteratingOverAList() {
   const numbers = [1, 2, 3];
 
-  numbers.forEach((int number) {
+  for (var number in numbers) {
     print(3 * number);
-  });
+  }
 
-  numbers.forEach((number) {
+  for (var number in numbers) {
     print(3 * number);
-  });
+  }
 
-  numbers.forEach((number) => print(3 * number));
+  for (var number in numbers) {
+    print(3 * number);
+  }
 
   for (final number in numbers) {
     print(3 * number);
   }
 
-  final triple = (int x) => print(3 * x);
+  triple(int x) => print(3 * x);
   numbers.forEach(triple);
 }
 
@@ -239,7 +241,9 @@ void tearOffs() {
   myButton.onPressed();
 
   const cities = ['Istanbul', 'Ankara', 'Izmir', 'Bursa', 'Antalya'];
-  cities.forEach((city) => print(city));
+  for (var city in cities) {
+    print(city);
+  }
 
   cities.forEach(print);
 }
@@ -269,9 +273,9 @@ void typedefs() {
 
 void closures() {
   var counter = 0;
-  final incrementCounter = () {
+  incrementCounter() {
     counter += 1;
-  };
+  }
 
   incrementCounter();
   incrementCounter();
@@ -291,9 +295,9 @@ void closures() {
 
 Function countingFunction() {
   var counter = 0;
-  final incrementCounter = () {
+  incrementCounter() {
     counter += 1;
     return counter;
-  };
+  }
   return incrementCounter;
 }

@@ -64,7 +64,7 @@ void addingConstructorsAndProperties() {
 
 void operatorOverloading() {
   print(3 + 2);
-  print('a' + 'b');
+  print('a' 'b');
 
   const pointA = Point(1, 4);
   const pointB = Point(3, 2);

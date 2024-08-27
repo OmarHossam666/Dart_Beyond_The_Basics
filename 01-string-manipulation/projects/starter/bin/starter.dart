@@ -82,8 +82,14 @@ Mongolia''';
     {
         for (int j = 1 ; j <= 10 ; j++)
         {
-            if (j == i) buffer.write(' ');
-            else buffer.write('*');
+            if (j == i) 
+            {
+                buffer.write(' ');
+            } 
+            else 
+            {
+                buffer.write('*');
+            }
             if (j == 10) buffer.write('\n');
         }
     }
