@@ -24,19 +24,47 @@ Future<void> main() async {
   // print("The Fibonacci of $number is $result");
 
   // Challenge 02
-  final ReceivePort receivePort = ReceivePort();
-  const jsonString = '''
-{
-"language": "Dart",
-"feeling": "love it",
-"level": "intermediate"
-}
-''';
-  await Isolate.spawn(
-      parseJson, {'sendPort': receivePort.sendPort, 'jsonString': jsonString});
+//   final ReceivePort receivePort = ReceivePort();
+//   const jsonString = '''
+// {
+// "language": "Dart",
+// "feeling": "love it",
+// "level": "intermediate"
+// }
+// ''';
+//   await Isolate.spawn(
+//       parseJson, {'sendPort': receivePort.sendPort, 'jsonString': jsonString});
 
-  final result = await receivePort.first as Map<String, dynamic>;
-  print(result);
+//   final result = await receivePort.first as Map<String, dynamic>;
+//   print(result);
+
+  final receivePort = ReceivePort();
+  final isolate = await Isolate.spawn(worker, receivePort.sendPort);
+
+  // final sendToWorkerPort = await receivePort.first as SendPort;
+  // sendToWorkerPort.send("Hello");
+
+  receivePort.listen((Object? message) {
+    if (message is SendPort) {
+      message.send("Hello");
+    } else if (message is String) {
+      print("Message Received: $message");
+      receivePort.close();
+      isolate.kill();
+    }
+  });
+}
+
+void worker(SendPort sendToMainPort) {
+  final receivePort = ReceivePort();
+  sendToMainPort.send(receivePort.sendPort);
+
+  receivePort.listen((message) {
+    if (message == "Hello") {
+      print("Message Received: $message");
+      sendToMainPort.send("Hello from worker!");
+    }
+  });
 }
 
 int recursiveFibonacci(int number) {

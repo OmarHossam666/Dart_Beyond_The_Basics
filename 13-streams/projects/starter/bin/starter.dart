@@ -194,14 +194,27 @@ Future<void> main() async {
   //   onError: (Object error) => print(error),
   //   onDone: () => print("Sink is closed!"),
   // );
+
   // await challenge01();
 
   // Challenge02
-  final coinFlippingService = CoinFlippingService();
+  // final coinFlippingService = CoinFlippingService();
 
-  coinFlippingService.onFlip.listen((data) => print(data));
+  // coinFlippingService.onFlip.listen((data) => print(data));
 
-  coinFlippingService.start();
+  // coinFlippingService.start();
+
+  // final file = File('assets/text.txt');
+  // final byteStream = file.openRead();
+  // final stringStream = byteStream.transform(utf8.decoder);
+
+  // await for (var data in byteStream) {
+  //   print("Byte Stream Data: $data");
+  // }
+
+  // await for (var data in stringStream) {
+  //   print("String Stream Data: $data");
+  // }
 }
 
 class CoinFlippingService {
